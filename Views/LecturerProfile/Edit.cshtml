@@ -1,0 +1,42 @@
+﻿@model Prog2bPOEPart2.Models.LecturerProfileViewModel
+
+@{
+    ViewData["Title"] = "Edit Lecturer Profile";
+}
+
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">Edit Lecturer Profile</h1>
+
+    <form asp-action="Edit" method="post">
+        <!-- UserID (Disabled) -->
+        <div class="form-group mb-3">
+            <label for="UserID">UserID</label>
+            <input type="email" class="form-control" id="UserID" name="UserID" value="@Model.UserID" disabled />
+        </div>
+
+        <!-- Name (Editable) -->
+        <div class="form-group mb-3">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control form-control-lg" id="Name" name="Name" value="@Model.Name" required />
+        </div>
+
+        <!-- Role (Disabled) -->
+        <div class="form-group mb-3">
+            <label for="Role">Role</label>
+            <input type="text" class="form-control" id="Role" name="Role" value="@Model.Role" disabled />
+        </div>
+
+        <!-- Hidden UserID (for form submission) -->
+        <input type="hidden" name="UserID" value="@Model.UserID" />
+
+        <!-- Save Button -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary btn-lg" style="border-radius: 20px;">Save Changes</button>
+        </div>
+    </form>
+
+    <!-- Cancel Button -->
+    <div class="text-center mt-3">
+        <a href="@Url.Action("Details", "LecturerProfile", new { id = Model.UserID })" class="btn btn-secondary btn-lg" style="border-radius: 20px;">Cancel</a>
+    </div>
+</div>

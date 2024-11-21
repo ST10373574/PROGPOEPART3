@@ -1,0 +1,97 @@
+﻿@model Prog2bPOEPart2.Models.Claim
+
+@{
+    ViewData["Title"] = "Create Claim";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <!-- Card for Claim Form -->
+            <div class="card shadow-lg" style="border-radius: 15px; background-color: #F9F9F9;">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4" style="color: #1E88E5; font-family: 'Poppins', sans-serif;">Create Claim</h2>
+                    <hr />
+
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <!-- Name Field -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="Name" class="form-control" placeholder="Name" style="border-radius: 15px;" />
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Date Submitted Field -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="DateSubmitted" class="form-control" placeholder="Date Submitted" style="border-radius: 15px;" />
+                            <label asp-for="DateSubmitted" class="form-label">Date Submitted</label>
+                            <span asp-validation-for="DateSubmitted" class="text-danger"></span>
+                        </div>
+
+                        <!-- Hours Worked Field -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="HoursWorked" class="form-control" placeholder="Hours Worked" style="border-radius: 15px;" />
+                            <label asp-for="HoursWorked" class="form-label">Hours Worked</label>
+                            <span asp-validation-for="HoursWorked" class="text-danger"></span>
+                        </div>
+
+                        <!-- Hourly Rate Field -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="HourlyRate" class="form-control" placeholder="Hourly Rate" style="border-radius: 15px;" />
+                            <label asp-for="HourlyRate" class="form-label">Hourly Rate</label>
+                            <span asp-validation-for="HourlyRate" class="text-danger"></span>
+                        </div>
+
+                        <!-- Extra Notes Field -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="ExtraNotes" class="form-control" placeholder="Extra Notes" style="border-radius: 15px;" />
+                            <label asp-for="ExtraNotes" class="form-label">Extra Notes</label>
+                            <span asp-validation-for="ExtraNotes" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-lg" style="background-color: #1E88E5; color: white; border-radius: 15px;">
+                                Create Claim
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Documents Section -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <p class="text-center" style="font-family: 'Poppins', sans-serif; color: #616161;">If you want to upload documents for this claim, please press the button below.</p>
+            <div class="d-grid gap-2">
+                <a asp-action="Create" asp-controller="Documents" class="btn btn-secondary btn-lg" style="border-radius: 15px;">
+                    Upload Documents
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to List Section -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="d-grid gap-2">
+                <a asp-action="Index" class="btn btn-outline-secondary btn-lg" style="border-radius: 15px;">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<!-- Include Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">

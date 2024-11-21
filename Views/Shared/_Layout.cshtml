@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CMCS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Prog2bPOEPart2.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f4f6f9;
+        }
+
+        .navbar {
+            background-color: darkslateblue;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: #d9d9d9;
+        }
+
+        .navbar-toggler {
+            border-color: #ffffff;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Cpath stroke="%23ffffff" stroke-width="2" d="M5 7h20M5 15h20M5 23h20" /%3E%3C/svg%3E');
+        }
+
+        /* Navbar title styling */
+        .navbar-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            width: 100%;
+            color: #ffffff;
+        }
+
+        .navbar-nav {
+            justify-content: center;
+            flex: 1;
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #ffffff;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .footer a {
+            color: orange;
+        }
+
+        .footer a:hover {
+            color: orange;
+        }
+
+        /* Button styling */
+        .btn {
+            border-radius: 0.25rem;
+        }
+
+        /* Main content styling */
+        .main-content {
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container flex-column">
+                <div class="navbar-title">PROGPOE3</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (User.IsInRole("Lecturer"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Claims" asp-action="Create">Submit Claims</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Claims" asp-action="Index">Track Claims</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">View Documents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Create">Upload Documents</a>
+                            </li>
+                            
+                        }
+                        @if (User.IsInRole("Academic Manager") || (User.IsInRole("Programme Coordinator")))
+
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Claims" asp-action="Index">Track Claims</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">View Documents</a>
+                            </li>
+
+                        }
+                        @if (User.IsInRole("HR"))
+
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Claims" asp-action="Index">Track Claims</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">View Documents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="LecturerProfile" asp-action="Index">Lecturer Profiles</a>
+                            </li>
+                        }
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-4 main-content">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted py-3">
+        <div class="container text-center">
+            &copy; 2024 - Prog2bPOEPart2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

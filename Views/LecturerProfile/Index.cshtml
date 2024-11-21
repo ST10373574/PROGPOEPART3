@@ -1,0 +1,62 @@
+﻿@model List<Prog2bPOEPart2.Models.LecturerProfileViewModel>
+
+@{
+    ViewData["Title"] = "Lecturer Profiles";
+}
+
+<div class="container my-5">
+    <!-- Title Section -->
+    <h1 class="text-center text-primary mb-4">Lecturer Profiles</h1>
+
+    <!-- Search Bar Section -->
+    <div class="row mb-4">
+        <div class="col-md-6 offset-md-3">
+            <input type="text" class="form-control form-control-lg" id="searchLecturers" placeholder="Search by name or role..." style="border-radius: 20px;" />
+        </div>
+    </div>
+
+    <!-- Lecturer Profiles List Section -->
+    <div class="row">
+        @foreach (var lecturer in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-light rounded-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark font-weight-bold">@lecturer.Name</h5>
+                        <p class="card-text"><strong>Role:</strong> @lecturer.Role</p>
+                        <p class="card-text"><strong>UserID:</strong> @lecturer.UserID</p>
+
+                        <!-- View and Edit Buttons -->
+                        <div class="d-flex justify-content-between mt-3">
+                            <a class="btn btn-primary btn-sm" asp-controller="LecturerProfile" asp-action="Details" asp-route-id="@lecturer.UserID" style="border-radius: 20px;">
+                                <i class="bi bi-eye"></i> View
+                            </a>
+                            <a class="btn btn-secondary btn-sm" asp-controller="LecturerProfile" asp-action="Edit" asp-route-id="@lecturer.UserID" style="border-radius: 20px;">
+                                <i class="bi bi-pencil"></i> Edit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Search functionality to filter the profiles
+        document.getElementById("searchLecturers").addEventListener("input", function () {
+            var searchQuery = this.value.toLowerCase();
+            var cards = document.querySelectorAll(".card");
+            cards.forEach(function (card) {
+                var name = card.querySelector(".card-title").textContent.toLowerCase();
+                var role = card.querySelector(".card-text").textContent.toLowerCase();
+                if (name.includes(searchQuery) || role.includes(searchQuery)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+}

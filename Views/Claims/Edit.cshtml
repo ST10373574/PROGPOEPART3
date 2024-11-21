@@ -1,0 +1,106 @@
+﻿@model Prog2bPOEPart2.Models.Claim
+
+@{
+    ViewData["Title"] = "Edit Claim";
+}
+
+<div class="container my-5">
+
+    <!-- Banner Section -->
+    <div class="banner-container position-relative text-white mb-5"
+         style="background-image: url('https://images.unsplash.com/photo-1518052113563-c63c348b23d1?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjA0OXwwfDF8c2VhY2h8MXx8c2lnbnxlbnwwfHx8fDE2Mzg3NjczMTI&ixlib=rb-1.2.1&q=80&w=1080');
+                background-size: cover;
+                background-position: center;
+                height: 350px;
+                border-radius: 15px;">
+        <div class="banner-content position-absolute top-50 start-50 translate-middle text-center" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+            <h1 class="display-4 fw-bold" style="font-family: 'Poppins', sans-serif;">Edit Claim</h1>
+        </div>
+    </div>
+
+    <!-- Edit Claim Form Section -->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+            <div class="card shadow-lg border-0" style="border-radius: 15px;">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #333;">Edit Claim Information</h3>
+                    <hr />
+
+                    <form asp-action="Edit">
+                        <!-- Validation Error Summary -->
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Hidden Input for ClaimId -->
+                        <input type="hidden" asp-for="ClaimId" />
+
+                        <!-- User ID -->
+                        <div class="form-group mb-3">
+                            <label asp-for="UserID" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">User ID</label>
+                            <input asp-for="UserID" class="form-control" />
+                            <span asp-validation-for="UserID" class="text-danger"></span>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Name" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">Name</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Date Submitted -->
+                        <div class="form-group mb-3">
+                            <label asp-for="DateSubmitted" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">Date Submitted</label>
+                            <input asp-for="DateSubmitted" class="form-control" />
+                            <span asp-validation-for="DateSubmitted" class="text-danger"></span>
+                        </div>
+
+                        <!-- Hours Worked -->
+                        <div class="form-group mb-3">
+                            <label asp-for="HoursWorked" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">Hours Worked</label>
+                            <input asp-for="HoursWorked" class="form-control" />
+                            <span asp-validation-for="HoursWorked" class="text-danger"></span>
+                        </div>
+
+                        <!-- Hourly Rate -->
+                        <div class="form-group mb-3">
+                            <label asp-for="HourlyRate" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">Hourly Rate</label>
+                            <input asp-for="HourlyRate" class="form-control" />
+                            <span asp-validation-for="HourlyRate" class="text-danger"></span>
+                        </div>
+
+                        <!-- Extra Notes -->
+                        <div class="form-group mb-3">
+                            <label asp-for="ExtraNotes" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">Extra Notes</label>
+                            <input asp-for="ExtraNotes" class="form-control" />
+                            <span asp-validation-for="ExtraNotes" class="text-danger"></span>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="form-group mb-3">
+                            <label asp-for="Status" class="form-label" style="font-family: 'Poppins', sans-serif; color: #333; font-weight: 500;">Status</label>
+                            <input asp-for="Status" class="form-control" />
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="form-group mb-3 text-center">
+                            <input type="submit" value="Save Changes" class="btn btn-primary btn-lg px-4 py-2" style="border-radius: 25px; font-family: 'Poppins', sans-serif;" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to List Link -->
+    <div class="text-center mt-4">
+        <a class="btn btn-secondary btn-lg px-4 py-2" asp-action="Index" style="border-radius: 25px; font-family: 'Poppins', sans-serif;">Back to List</a>
+    </div>
+
+</div>
+
+<!-- Include Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Include Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

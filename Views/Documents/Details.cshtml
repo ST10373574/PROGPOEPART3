@@ -1,0 +1,59 @@
+﻿@model Prog2bPOEPart2.Models.Document
+
+@{
+    ViewData["Title"] = "Document Details";
+}
+
+<div class="container my-5">
+    <h2 class="text-center text-dark mb-4">Document Details</h2>
+
+    <div class="card shadow-sm border-light" style="border-radius: 0;">
+        <div class="card-body">
+            <h4 class="mb-4">Document Information</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.FileName)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FileName)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.FileType)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FileType)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.FilePath)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FilePath)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.FileSize)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.FileSize)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.UploadedDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.UploadedDate)
+                </dd>
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Claim)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Claim.ClaimId)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-action="Edit" asp-route-id="@Model?.DocumentId" class="btn btn-primary btn-lg" style="border-radius: 20px;">Edit Document</a>
+        <a asp-action="Index" class="btn btn-secondary btn-lg mt-2" style="border-radius: 20px;">Back to List</a>
+    </div>
+</div>

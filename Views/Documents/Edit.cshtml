@@ -1,0 +1,69 @@
+﻿@model Prog2bPOEPart2.Models.Document
+
+@{
+    ViewData["Title"] = "Edit Document";
+}
+
+<div class="container my-5">
+    <h2 class="text-center text-dark mb-4">Edit Document</h2>
+
+    <div class="card shadow-sm border-light" style="border-radius: 0;">
+        <div class="card-body">
+            <h4 class="mb-4">Document Information</h4>
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="DocumentId" />
+
+                <div class="form-group">
+                    <label asp-for="FileName" class="control-label">File Name</label>
+                    <input asp-for="FileName" class="form-control" />
+                    <span asp-validation-for="FileName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FileType" class="control-label">File Type</label>
+                    <input asp-for="FileType" class="form-control" />
+                    <span asp-validation-for="FileType" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FilePath" class="control-label">File Path</label>
+                    <input asp-for="FilePath" class="form-control" />
+                    <span asp-validation-for="FilePath" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FileSize" class="control-label">File Size</label>
+                    <input asp-for="FileSize" class="form-control" />
+                    <span asp-validation-for="FileSize" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="UploadedDate" class="control-label">Uploaded Date</label>
+                    <input asp-for="UploadedDate" class="form-control" />
+                    <span asp-validation-for="UploadedDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ClaimId" class="control-label">Claim</label>
+                    <select asp-for="ClaimId" class="form-control" asp-items="ViewBag.ClaimId"></select>
+                    <span asp-validation-for="ClaimId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Save Changes" class="btn btn-primary btn-lg" style="border-radius: 20px;" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-action="Index" class="btn btn-secondary btn-lg" style="border-radius: 20px;">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

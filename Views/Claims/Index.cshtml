@@ -1,0 +1,157 @@
+﻿@model IEnumerable<Prog2bPOEPart2.Models.Claim>
+
+@{
+    ViewData["Title"] = "Claims Overview";
+}
+
+<div class="container my-5">
+    <!-- Banner Section -->
+    <div class="text-center mb-5" style="background-color: #4e73df; border-radius: 10px; padding: 40px 20px;">
+        <h1 class="text-white display-4">Claims Overview</h1>
+    </div>
+
+    <!-- Claims Table Section -->
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table table-hover" style="border-collapse: separate; border-spacing: 0 15px;">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.UserID)</th>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.DateSubmitted)</th>
+                            <th>@Html.DisplayNameFor(model => model.HoursWorked)</th>
+                            <th>@Html.DisplayNameFor(model => model.HourlyRate)</th>
+                            <th>@Html.DisplayNameFor(model => model.TotalEarning)</th>
+                            <th>@Html.DisplayNameFor(model => model.ExtraNotes)</th>
+                            <th>Programme Coordinator Approval</th>
+                            <th>Academic Manager Approval</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="@(item.Status == "Rejected" ? "table-danger" : item.Status == "Approved" ? "table-success" : "table-info")">
+                                <td>@Html.DisplayFor(modelItem => item.UserID)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@item.DateSubmitted.ToString("yyyy/MM/dd")</td> <!-- Date formatting -->
+                                <td>@Html.DisplayFor(modelItem => item.HoursWorked)</td>
+                                <td>@Html.DisplayFor(modelItem => item.HourlyRate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalEarning)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ExtraNotes)</td>
+                                <td>
+                                    @if (item.IsProgrammeCoordinatorApproved)
+                                    {
+                                        <span class="text-success">Approved</span>
+                                    }
+                                    else if (item.Status == "Rejected" && !item.IsProgrammeCoordinatorApproved)
+                                    {
+                                        <span class="text-danger">Rejected</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-warning">Pending</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsAcademicManagerApproved)
+                                    {
+                                        <span class="text-success">Approved</span>
+                                    }
+                                    else if (item.Status == "Rejected" && !item.IsAcademicManagerApproved)
+                                    {
+                                        <span class="text-danger">Rejected</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-warning">Pending</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Status == "Rejected")
+                                    {
+                                        <span class="text-danger">Rejected</span>
+                                    }
+                                    else if (item.Status == "Approved")
+                                    {
+                                        <span class="text-success">Approved</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-warning">Pending</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-around">
+                                        <a asp-action="Details" asp-route-id="@item.ClaimId" class="btn btn-outline-light btn-sm" style="border-radius: 5px;">Details</a>
+                                        <a asp-action="Delete" asp-route-id="@item.ClaimId" class="btn btn-outline-danger btn-sm" style="border-radius: 5px;">Delete</a>
+
+                                        @if (User.IsInRole("Lecturer"))
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item.ClaimId" class="btn btn-outline-primary btn-sm" style="border-radius: 5px;">Edit</a>
+                                        }
+
+                                        @if (item.Status != "Rejected")
+                                        {
+                                            @if (User.IsInRole("Programme Coordinator"))
+                                            {
+                                                @if (!item.IsProgrammeCoordinatorApproved)
+                                                {
+                                                    <form method="post" asp-action="Approve" asp-route-id="@item.ClaimId" class="d-inline">
+                                                        <button type="submit" class="btn btn-success btn-sm" style="border-radius: 5px;">Approve</button>
+                                                    </form>
+                                                    <form method="post" asp-action="Reject" asp-route-id="@item.ClaimId" class="d-inline">
+                                                        <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 5px;">Reject</button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">Already Approved by Programme Coordinator</span>
+                                                }
+                                            }
+
+                                            @if (User.IsInRole("Academic Manager"))
+                                            {
+                                                @if (!item.IsAcademicManagerApproved)
+                                                {
+                                                    <form method="post" asp-action="Approve" asp-route-id="@item.ClaimId" class="d-inline">
+                                                        <button type="submit" class="btn btn-success btn-sm" style="border-radius: 5px;">Approve</button>
+                                                    </form>
+                                                    <form method="post" asp-action="Reject" asp-route-id="@item.ClaimId" class="d-inline">
+                                                        <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 5px;">Reject</button>
+                                                    </form>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">Already Approved by Academic Manager</span>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Claim Rejected</span>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Download Button Section -->
+            @if (User.IsInRole("HR"))
+            {
+                <div class="text-center mt-4">
+                    <a class="btn btn-primary btn-lg" href="@Url.Action("DownloadReport", "Claims")" style="width: 100%; border-radius: 5px;">Download Claims Report</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap & Font Awesome for styling and icons -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
