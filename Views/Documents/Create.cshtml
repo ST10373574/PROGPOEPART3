@@ -4,26 +4,39 @@
     ViewData["Title"] = "Create Document";
 }
 
+<!-- Main container for the page content -->
 <div class="container my-5">
+    <!-- Title and Description -->
     <h2 class="text-center text-primary mb-4">Create Document</h2>
-    <p class="text-center mb-4" style="color: #555;">Please make sure that the document is either a PDF or a DOCX file.</p>
+    <p class="text-center mb-4" style="color: #555;">
+        Please make sure that the document is either a PDF or a DOCX file.
+    </p>
 
+    <!-- Card for the form -->
     <div class="card shadow-sm border-light" style="border-radius: 0;">
         <div class="card-body">
+            <!-- Form for creating a document -->
             <form asp-action="Create" enctype="multipart/form-data">
 
+                <!-- Dropdown to select associated claim -->
                 <div class="form-group">
                     <label asp-for="ClaimId" class="control-label">Claim</label>
+                    <!-- Dropdown is populated using ViewBag.ClaimId -->
                     <select asp-for="ClaimId" class="form-control" asp-items="ViewBag.ClaimId"></select>
                 </div>
 
+                <!-- File upload input -->
                 <div class="form-group mt-3">
                     <label for="file">Upload Document</label>
+                    <!-- Accepts file input; enctype="multipart/form-data" ensures files are uploaded -->
                     <input type="file" class="form-control" name="file" />
                 </div>
 
+                <!-- Form buttons for submitting or navigating back -->
                 <div class="form-group mt-4">
+                    <!-- Submit button for creating the document -->
                     <button type="submit" class="btn btn-primary btn-lg" style="border-radius: 20px;">Create</button>
+                    <!-- Button to navigate back to the document list -->
                     <a asp-action="Index" class="btn btn-secondary btn-lg" style="border-radius: 20px;">Back to List</a>
                 </div>
 
