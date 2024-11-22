@@ -1,55 +1,72 @@
 ﻿@model Prog2bPOEPart2.Models.Document
 
 @{
+    // Sets the page title for the browser tab and layout
     ViewData["Title"] = "Edit Document";
 }
 
+<!-- Main container for the edit document form -->
 <div class="container my-5">
+    <!-- Page header -->
     <h2 class="text-center text-dark mb-4">Edit Document</h2>
 
+    <!-- Card container for form -->
     <div class="card shadow-sm border-light" style="border-radius: 0;">
         <div class="card-body">
+            <!-- Section title -->
             <h4 class="mb-4">Document Information</h4>
+
+            <!-- Form to edit document details -->
             <form asp-action="Edit">
+                <!-- Display validation summary for model errors -->
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <!-- Hidden field for DocumentId to pass it back to the server -->
                 <input type="hidden" asp-for="DocumentId" />
 
+                <!-- File Name field -->
                 <div class="form-group">
                     <label asp-for="FileName" class="control-label">File Name</label>
                     <input asp-for="FileName" class="form-control" />
                     <span asp-validation-for="FileName" class="text-danger"></span>
                 </div>
 
+                <!-- File Type field -->
                 <div class="form-group">
                     <label asp-for="FileType" class="control-label">File Type</label>
                     <input asp-for="FileType" class="form-control" />
                     <span asp-validation-for="FileType" class="text-danger"></span>
                 </div>
 
+                <!-- File Path field -->
                 <div class="form-group">
                     <label asp-for="FilePath" class="control-label">File Path</label>
                     <input asp-for="FilePath" class="form-control" />
                     <span asp-validation-for="FilePath" class="text-danger"></span>
                 </div>
 
+                <!-- File Size field -->
                 <div class="form-group">
                     <label asp-for="FileSize" class="control-label">File Size</label>
                     <input asp-for="FileSize" class="form-control" />
                     <span asp-validation-for="FileSize" class="text-danger"></span>
                 </div>
 
+                <!-- Uploaded Date field -->
                 <div class="form-group">
                     <label asp-for="UploadedDate" class="control-label">Uploaded Date</label>
                     <input asp-for="UploadedDate" class="form-control" />
                     <span asp-validation-for="UploadedDate" class="text-danger"></span>
                 </div>
 
+                <!-- Claim selection dropdown -->
                 <div class="form-group">
                     <label asp-for="ClaimId" class="control-label">Claim</label>
                     <select asp-for="ClaimId" class="form-control" asp-items="ViewBag.ClaimId"></select>
                     <span asp-validation-for="ClaimId" class="text-danger"></span>
                 </div>
 
+                <!-- Submit button -->
                 <div class="form-group text-center">
                     <input type="submit" value="Save Changes" class="btn btn-primary btn-lg" style="border-radius: 20px;" />
                 </div>
@@ -57,13 +74,16 @@
         </div>
     </div>
 
+    <!-- Back to List button -->
     <div class="text-center mt-4">
         <a asp-action="Index" class="btn btn-secondary btn-lg" style="border-radius: 20px;">Back to List</a>
     </div>
 </div>
 
+<!-- Validation scripts section -->
 @section Scripts {
     @{
+        // Includes client-side validation scripts
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
