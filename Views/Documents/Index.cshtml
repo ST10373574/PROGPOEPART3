@@ -1,42 +1,56 @@
 ﻿@model IEnumerable<Prog2bPOEPart2.Models.Document>
 
 @{
+    // Sets the page title for the browser tab and layout
     ViewData["Title"] = "Documents List";
 }
 
+<!-- Main container for the document list -->
 <div class="container my-5">
+    <!-- Page header for the documents list -->
     <h2 class="text-center text-primary mb-4">Documents List</h2>
 
+    <!-- Card container for the table displaying documents -->
     <div class="card shadow-sm border-light" style="border-radius: 0;">
         <div class="card-body">
+            <!-- Table container with responsive layout -->
             <div class="table-responsive">
+                <!-- Table structure to display document details -->
                 <table class="table table-hover table-bordered">
+                    <!-- Table header -->
                     <thead class="table-dark">
                         <tr>
-                            <th>File Name</th>
-                            <th>Claim Name</th>
-                            <th>File Type</th>
-                            <th>File Path</th>
-                            <th>File Size</th>
-                            <th>Uploaded Date</th>
-                            <th>Actions</th>
+                            <th>File Name</th> <!-- Column for file name -->
+                            <th>Claim Name</th> <!-- Column for associated claim name -->
+                            <th>File Type</th> <!-- Column for file type (PDF, DOCX, etc.) -->
+                            <th>File Path</th> <!-- Column for file location/path -->
+                            <th>File Size</th> <!-- Column for file size -->
+                            <th>Uploaded Date</th> <!-- Column for the upload date -->
+                            <th>Actions</th> <!-- Column for action buttons (Details, Edit, Delete, Download) -->
                         </tr>
                     </thead>
+                    <!-- Table body where the list of documents is displayed -->
                     <tbody>
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>@item.FileName</td>
-                                <td>@item.Claim?.Name</td>
-                                <td>@item.FileType</td>
-                                <td>@item.FilePath</td>
-                                <td>@item.FileSize</td>
-                                <td>@item.UploadedDate</td>
+                                <!-- Display document properties for each row -->
+                                <td>@item.FileName</td> <!-- Display file name -->
+                                <td>@item.Claim?.Name</td> <!-- Display associated claim name, checking if claim exists -->
+                                <td>@item.FileType</td> <!-- Display file type -->
+                                <td>@item.FilePath</td> <!-- Display file path -->
+                                <td>@item.FileSize</td> <!-- Display file size -->
+                                <td>@item.UploadedDate</td> <!-- Display upload date -->
                                 <td>
+                                    <!-- Action buttons for each document -->
                                     <div class="d-flex justify-content-around">
+                                        <!-- Details button: Redirects to the details view of the document -->
                                         <a asp-action="Details" asp-route-id="@item.DocumentId" class="btn btn-info btn-sm" style="border-radius: 20px;">Details</a>
+                                        <!-- Edit button: Redirects to the edit page for the document -->
                                         <a asp-action="Edit" asp-route-id="@item.DocumentId" class="btn btn-primary btn-sm" style="border-radius: 20px;">Edit</a>
+                                        <!-- Delete button: Redirects to the delete confirmation page for the document -->
                                         <a asp-action="Delete" asp-route-id="@item.DocumentId" class="btn btn-danger btn-sm" style="border-radius: 20px;">Delete</a>
+                                        <!-- Download button: Allows the user to download the document -->
                                         <a asp-action="Download" asp-route-id="@item.DocumentId" class="btn btn-success btn-sm" style="border-radius: 20px;">Download</a>
                                     </div>
                                 </td>
@@ -48,6 +62,7 @@
         </div>
     </div>
 
+    <!-- Button to navigate back to the list view -->
     <div class="d-flex justify-content-center mt-4">
         <a asp-action="Index" class="btn btn-secondary btn-lg" style="border-radius: 20px;">Back to List</a>
     </div>
