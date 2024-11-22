@@ -1,23 +1,29 @@
 ﻿@model Prog2bPOEPart2.Models.Claim
 
 @{
-    ViewData["Title"] = "Create Claim";
+    ViewData["Title"] = "Create Claim"; // Setting the title of the page for use in the layout.
 }
 
+<!-- Main container with a margin for spacing -->
 <div class="container my-5">
+    <!-- Centering the content using Bootstrap's grid system -->
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <!-- Card for Claim Form -->
+            <!-- Card component for the claim creation form -->
             <div class="card shadow-lg" style="border-radius: 15px; background-color: #F9F9F9;">
                 <div class="card-body p-5">
+                    <!-- Page heading -->
                     <h2 class="text-center mb-4" style="color: #1E88E5; font-family: 'Poppins', sans-serif;">Create Claim</h2>
                     <hr />
 
+                    <!-- Form begins here -->
                     <form asp-action="Create">
+                        <!-- Display validation summary for the model -->
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                         <!-- Name Field -->
                         <div class="form-floating mb-4">
+                            <!-- Input for the "Name" property of the model -->
                             <input asp-for="Name" class="form-control" placeholder="Name" style="border-radius: 15px;" />
                             <label asp-for="Name" class="form-label">Name</label>
                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -53,6 +59,7 @@
 
                         <!-- Submit Button -->
                         <div class="d-grid gap-2">
+                            <!-- Button to submit the form -->
                             <button type="submit" class="btn btn-lg" style="background-color: #1E88E5; color: white; border-radius: 15px;">
                                 Create Claim
                             </button>
@@ -66,7 +73,11 @@
     <!-- Upload Documents Section -->
     <div class="row justify-content-center mt-5">
         <div class="col-lg-6 col-md-8 col-sm-10">
-            <p class="text-center" style="font-family: 'Poppins', sans-serif; color: #616161;">If you want to upload documents for this claim, please press the button below.</p>
+            <!-- Instruction text for uploading documents -->
+            <p class="text-center" style="font-family: 'Poppins', sans-serif; color: #616161;">
+                If you want to upload documents for this claim, please press the button below.
+            </p>
+            <!-- Button to navigate to the document upload page -->
             <div class="d-grid gap-2">
                 <a asp-action="Create" asp-controller="Documents" class="btn btn-secondary btn-lg" style="border-radius: 15px;">
                     Upload Documents
@@ -78,6 +89,7 @@
     <!-- Back to List Section -->
     <div class="row justify-content-center mt-4">
         <div class="col-lg-6 col-md-8 col-sm-10">
+            <!-- Button to navigate back to the claim list -->
             <div class="d-grid gap-2">
                 <a asp-action="Index" class="btn btn-outline-secondary btn-lg" style="border-radius: 15px;">
                     Back to List
@@ -89,9 +101,10 @@
 
 @section Scripts {
     @{
+        // Render partial view for client-side validation scripts
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
 
-<!-- Include Google Fonts -->
+<!-- Google Fonts for custom styling -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
