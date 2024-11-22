@@ -1,59 +1,79 @@
 ﻿@model Prog2bPOEPart2.Models.Document
 
 @{
+    // Sets the title of the page for the browser tab and layout
     ViewData["Title"] = "Document Details";
 }
 
+<!-- Main container for the document details page -->
 <div class="container my-5">
+    <!-- Page Title -->
     <h2 class="text-center text-dark mb-4">Document Details</h2>
 
+    <!-- Card to display document details -->
     <div class="card shadow-sm border-light" style="border-radius: 0;">
         <div class="card-body">
+            <!-- Section title -->
             <h4 class="mb-4">Document Information</h4>
             <hr />
+            <!-- Details of the document displayed in a definition list -->
             <dl class="row">
+                <!-- File Name -->
                 <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.FileName)
+                    @Html.DisplayNameFor(model => model.FileName) <!-- Label for FileName -->
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.FileName)
+                    @Html.DisplayFor(model => model.FileName) <!-- Value of FileName -->
                 </dd>
+
+                <!-- File Type -->
                 <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.FileType)
+                    @Html.DisplayNameFor(model => model.FileType) <!-- Label for FileType -->
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.FileType)
+                    @Html.DisplayFor(model => model.FileType) <!-- Value of FileType -->
                 </dd>
+
+                <!-- File Path -->
                 <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.FilePath)
+                    @Html.DisplayNameFor(model => model.FilePath) <!-- Label for FilePath -->
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.FilePath)
+                    @Html.DisplayFor(model => model.FilePath) <!-- Value of FilePath -->
                 </dd>
+
+                <!-- File Size -->
                 <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.FileSize)
+                    @Html.DisplayNameFor(model => model.FileSize) <!-- Label for FileSize -->
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.FileSize)
+                    @Html.DisplayFor(model => model.FileSize) <!-- Value of FileSize -->
                 </dd>
+
+                <!-- Uploaded Date -->
                 <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.UploadedDate)
+                    @Html.DisplayNameFor(model => model.UploadedDate) <!-- Label for UploadedDate -->
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.UploadedDate)
+                    @Html.DisplayFor(model => model.UploadedDate) <!-- Value of UploadedDate -->
                 </dd>
+
+                <!-- Associated Claim -->
                 <dt class="col-sm-3">
-                    @Html.DisplayNameFor(model => model.Claim)
+                    @Html.DisplayNameFor(model => model.Claim) <!-- Label for associated Claim -->
                 </dt>
                 <dd class="col-sm-9">
-                    @Html.DisplayFor(model => model.Claim.ClaimId)
+                    @Html.DisplayFor(model => model.Claim.ClaimId) <!-- Value of ClaimId -->
                 </dd>
             </dl>
         </div>
     </div>
 
+    <!-- Action Buttons Section -->
     <div class="mt-4 text-center">
+        <!-- Link to Edit Document -->
         <a asp-action="Edit" asp-route-id="@Model?.DocumentId" class="btn btn-primary btn-lg" style="border-radius: 20px;">Edit Document</a>
+        <!-- Link to navigate back to the document list -->
         <a asp-action="Index" class="btn btn-secondary btn-lg mt-2" style="border-radius: 20px;">Back to List</a>
     </div>
 </div>
